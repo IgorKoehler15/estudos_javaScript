@@ -1,4 +1,7 @@
+let tarefas = []
+
 function adicionarTarefa() {
+
     // 1. CAPTURA DE ELEMENTOS DO DOM
     const inputTarefa = document.getElementById("inputTarefa");
     const mensagem = document.getElementById("mensagem");
@@ -18,13 +21,10 @@ function adicionarTarefa() {
         mensagem.textContent = "Tarefa adicionada com sucesso!";
         mensagem.style.color = "green"; // Dica extra: mudar para verde
 
-        // Criação de novos elementos no DOM
-        let novaTarefa = document.createElement("li");
-        novaTarefa.textContent = tarefa;
+        tarefas.push(tarefa)
 
-        // Inserção do novo elemento na árvore do HTML (DOM)
-        // 
-        listaTarefas.appendChild(novaTarefa);
+        renderizarTarefas()
+
     }
 
     // 4. LIMPEZA E RESET
@@ -33,4 +33,17 @@ function adicionarTarefa() {
     
     // Devolve o foco (o cursor) para o input automaticamente
     inputTarefa.focus();
+}
+
+
+function renderizarTarefas() {
+    const listaTarefas = document.getElementById("listaTarefas")
+    listaTarefas.innerHTML = ""
+
+    let i = 0
+    for (i; i < tarefas.length; i++){
+        let novaTarefa = document.createElement("li")
+        novaTarefa.textContent = tarefas[i]
+        listaTarefas.appendChild(novaTarefa)
+    }
 }
